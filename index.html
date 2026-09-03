@@ -444,8 +444,18 @@
 
         @media (max-width: 768px) {
             .hero-stats-row {
-                flex-direction: column;
+                flex-direction: row;
                 gap: 24px;
+                flex-wrap: wrap;
+            }
+
+            .hero-stat {
+                flex: 1;
+                min-width: 80px;
+            }
+
+            .hero-stat h3 {
+                font-size: 1.8rem;
             }
 
             .why-grid {
@@ -466,6 +476,58 @@
             }
 
             .featured-project-price {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .about-content > div[style*="grid"] {
+                grid-template-columns: 1fr !important;
+                gap: 16px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-stats-row {
+                gap: 16px;
+            }
+
+            .hero-stat {
+                min-width: 70px;
+            }
+
+            .hero-stat h3 {
+                font-size: 1.5rem;
+            }
+
+            .hero-stat p {
+                font-size: 9px;
+                letter-spacing: 0.05em;
+            }
+
+            .home-hero-badge {
+                padding: 8px 14px;
+                gap: 8px;
+            }
+
+            .home-hero-badge span {
+                font-size: 9px;
+                letter-spacing: 0.1em;
+            }
+
+            .why-card {
+                padding: 24px 20px;
+            }
+
+            .testimonial-card {
+                padding: 24px 20px;
+            }
+
+            .testimonial-card .quote-icon {
+                font-size: 1.5rem;
+            }
+
+            .testimonial-author {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 12px;
