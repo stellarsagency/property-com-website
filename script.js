@@ -1,30 +1,44 @@
 // Navbar scroll effect
 const navbar = document.getElementById('navbar');
 
-window.addEventListener('scroll', () => {
+function handleScroll() {
     if (window.scrollY > 40) {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
     }
-});
+}
+
+window.addEventListener('scroll', handleScroll);
+handleScroll();
 
 // Mobile Menu Toggle
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const navLinks = document.getElementById('navLinks');
 
+function closeMenu() {
+    navLinks.classList.remove('active');
+    document.body.style.overflow = '';
+    const icon = mobileMenuBtn.querySelector('i');
+    icon.classList.remove('fa-times');
+    icon.classList.add('fa-bars');
+}
+
+function openMenu() {
+    navLinks.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    const icon = mobileMenuBtn.querySelector('i');
+    icon.classList.remove('fa-bars');
+    icon.classList.add('fa-times');
+}
+
 if (mobileMenuBtn) {
     mobileMenuBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        navLinks.classList.toggle('active');
-        document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
-        const icon = mobileMenuBtn.querySelector('i');
         if (navLinks.classList.contains('active')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
+            closeMenu();
         } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
+            openMenu();
         }
     });
 }
@@ -33,11 +47,7 @@ if (mobileMenuBtn) {
 document.addEventListener('click', (e) => {
     if (navLinks && navLinks.classList.contains('active')) {
         if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-            navLinks.classList.remove('active');
-            document.body.style.overflow = '';
-            const icon = mobileMenuBtn.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
+            closeMenu();
         }
     }
 });
@@ -45,12 +55,15 @@ document.addEventListener('click', (e) => {
 // Close mobile menu when clicking a link
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        document.body.style.overflow = '';
-        const icon = mobileMenuBtn.querySelector('i');
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
+        closeMenu();
     });
+});
+
+// Close menu on escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+        closeMenu();
+    }
 });
 
 // Contact Form Submission
@@ -74,20 +87,6 @@ if (contactForm) {
         contactForm.reset();
     });
 }
-
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
 
 // Animation on scroll
 const observerOptions = {
