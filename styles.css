@@ -1607,11 +1607,10 @@ h1, h2, h3, h4, h5, h6 {
     /* MOBILE NAV - Override base styles */
     .navbar .nav-links {
         display: none !important;
-        position: fixed;
-        top: 72px;
+        position: absolute;
+        top: 100%;
         left: 0;
         right: 0;
-        bottom: 0;
         background: rgba(17,17,17,0.97);
         backdrop-filter: blur(30px);
         -webkit-backdrop-filter: blur(30px);
@@ -1623,6 +1622,7 @@ h1, h2, h3, h4, h5, h6 {
         border-top: 1px solid rgba(255,255,255,0.05);
         z-index: 100;
         overflow-y: auto;
+        max-height: calc(100vh - 100%);
         -webkit-overflow-scrolling: touch;
     }
 
@@ -2361,11 +2361,25 @@ h1, h2, h3, h4, h5, h6 {
     /* Navbar mobile */
     .nav-container {
         padding: 0 16px;
-        height: 56px;
+        height: auto;
+        min-height: 60px;
+        padding-top: 8px;
+        padding-bottom: 8px;
     }
 
     .navbar.scrolled .nav-container {
-        height: 48px;
+        height: auto;
+        min-height: 50px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+
+    .logo img {
+        height: 50px;
+    }
+
+    .navbar.scrolled .logo img {
+        height: 40px;
     }
 
     .logo-text .name {
@@ -2396,7 +2410,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .navbar .nav-links {
-        top: 56px;
+        top: auto;
         padding: 16px 16px 32px;
     }
 
@@ -2407,7 +2421,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .navbar.scrolled .nav-links {
-        top: 48px;
+        top: auto;
     }
 
     /* Scroll indicator hidden on small screens */
