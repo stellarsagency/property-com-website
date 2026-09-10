@@ -2360,18 +2360,12 @@ h1, h2, h3, h4, h5, h6 {
 
     /* Navbar mobile */
     .nav-container {
-        padding: 0 16px;
+        padding: 8px 16px;
         height: auto;
-        min-height: 60px;
-        padding-top: 8px;
-        padding-bottom: 8px;
     }
 
     .navbar.scrolled .nav-container {
-        height: auto;
-        min-height: 50px;
-        padding-top: 6px;
-        padding-bottom: 6px;
+        padding: 4px 16px;
     }
 
     .logo img {
